@@ -1,0 +1,352 @@
+*{
+	margin:0px;
+	padding: 0px;
+	font-family: 'Electrolize', sans-serif;
+
+}
+
+p {
+	font-size: 140%;
+}
+
+/*header*/
+h1{
+	text-align: center;
+	color:blue;
+	font-family: "Patua One";
+	font-size: 5em;
+
+}
+
+h1>img{
+	border-radius: 200px;
+}
+
+.sectionheader{
+	color:black;
+	font-size: 2em;
+}
+
+.headerprincipal{
+	background-image:url(../img/bancopesas.jpeg);
+}
+
+/*Nav*/
+nav > ul{
+	background: rgba(32,124,229,1);
+	background: -moz-linear-gradient(left, rgba(32,124,229,1) 0%, rgba(11,7,74,1) 100%);
+	background: -webkit-gradient(left top, right top, color-stop(0%, rgba(32,124,229,1)), color-stop(100%, rgba(11,7,74,1)));
+	background: -webkit-linear-gradient(left, rgba(32,124,229,1) 0%, rgba(11,7,74,1) 100%);
+	background: -o-linear-gradient(left, rgba(32,124,229,1) 0%, rgba(11,7,74,1) 100%);
+	background: -ms-linear-gradient(left, rgba(32,124,229,1) 0%, rgba(11,7,74,1) 100%);
+	background: linear-gradient(to right, rgba(32,124,229,1) 0%, rgba(11,7,74,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#207ce5', endColorstr='#0b074a', GradientType=1 );
+	display:flex;
+	flex-direction: column;
+	color: white;
+	font-family:"fantasy";	
+	text-align: center;
+	font-size: 120%;
+	list-style-type: none;
+}
+
+li{
+	text-align: left;
+	height: 50px;
+	margin:10px;
+	transition: background-color 1s;
+}
+
+nav > ul > li:hover{
+	background-color: black;
+	
+}
+
+.activo{
+	background-color: black;
+	border-radius: 20px;
+}
+
+li>a{
+	text-decoration: none;
+	color: white;
+	font-size: 2em
+}
+
+/*MAIN*/
+
+.item1{ grid-area: header ; }
+.item2{ grid-area: mainuno; }
+.item3{ grid-area: maindos; }
+.item4{ grid-area: maintres; }
+.item5{ grid-area: footer; }
+
+.item1>article>img{
+	border-radius: 50px;
+}
+
+.item2>article,.item3>article{
+	margin-top: 30px;
+}
+
+
+.item1,.item2,.item3{
+	text-align: center;
+	margin-top: 40px;
+}
+
+.item4{
+	margin-bottom: 100px;
+}
+
+.minifotos>figure>img{
+	height: 120px;
+	width: 120px;
+	border-radius: 30px;
+
+}
+
+.minifotos{
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+
+}
+
+.grid-container{
+
+	display:grid;
+	grid-template-areas:
+		'header header header header'
+		'mainuno  mainuno mainuno  mainuno'  
+		'maindos  maindos maindos  maindos'
+		'maintres maintres maintres maintres'
+
+	;
+	grid-gap:20px;
+	
+}
+
+.grid-container > div {
+
+	padding:10px;
+
+}
+
+
+/*Footer*/
+footer{	
+	text-align: left;	
+	color: white;
+	background: rgba(32,124,229,1);
+	background: -moz-linear-gradient(left, rgba(32,124,229,1) 0%, rgba(11,7,74,1) 100%);
+	background: -webkit-gradient(left top, right top, color-stop(0%, rgba(32,124,229,1)), color-stop(100%, rgba(11,7,74,1)));
+	background: -webkit-linear-gradient(left, rgba(32,124,229,1) 0%, rgba(11,7,74,1) 100%);
+	background: -o-linear-gradient(left, rgba(32,124,229,1) 0%, rgba(11,7,74,1) 100%);
+	background: -ms-linear-gradient(left, rgba(32,124,229,1) 0%, rgba(11,7,74,1) 100%);
+	background: linear-gradient(to right, rgba(32,124,229,1) 0%, rgba(11,7,74,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#207ce5', endColorstr='#0b074a', GradientType=1 );
+}
+
+
+footer > img{
+	border-radius: 200px;
+	margin-top: 10px;
+}
+
+.mainsinfooter > img{
+	width: 200px;
+	height: 200px;
+}
+
+/*Otras paginas*/
+.miembro{
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 20px;
+}
+
+.miembro>img{
+
+	width:250px; 
+	height:240px;
+}
+
+
+.miembro-texto{
+
+	display: flex;
+	flex-direction: column;
+	margin-top: 20px;
+}
+
+.miembro-texto > h2{
+	font-weight: bold;
+	color: black;
+	margin-left:40px;
+	font-size: 200%
+
+}
+
+.miembro-texto > h3{
+	margin-left:40px;
+	font-weight: bold;
+	color: purple;
+}
+
+.miembro-texto > p{
+	margin:20px;
+	font-weight: bold;
+	color: darkblue;
+}
+
+form{
+	margin-top: 40px;
+	color:darkblue;
+	font-size: 1.4em;
+}
+
+.mapa{
+
+	margin: 20px;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	
+}
+
+.mapa > div{
+
+	margin: 20px;
+
+}
+
+.mapa > div > ul{
+
+	margin:10px;
+	font-size: 2em;
+	background-color: #8EC5FC;
+	background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+	display:flex;
+	color: black;
+	font-family:"fantasy";
+	flex-wrap: nowrap;
+	flex-direction: column;
+	font-size: 120%;
+	list-style-type: none;	
+
+}
+
+.mapa > figure > img{
+
+	width: 500px;
+	height: 500px;
+}
+
+video{
+	margin-top: 40px;
+}
+
+#titulomultimedia{
+	font-size: 1.5em;
+}
+#bienvenido{
+	font-size: 2.5em;
+}
+
+input:required{
+	color:blue;
+	font-size: 1.5em;
+}
+
+
+/*Estilo para elementos JS*/
+#reloj{
+	font-size: 3em;
+	font-weight: bolder;
+}
+
+
+@media screen and (min-width:600px){
+
+li{
+	text-align: center;
+}
+
+.minifotos{
+ 	display: grid;
+ 	grid-template-columns: 1fr 1fr 1fr;
+}
+
+}
+
+@media screen and (min-width:800px){
+
+nav > ul{
+	display:flex;
+	flex-direction: row;
+}
+
+li{
+	width: 275px;
+	height: 50px;
+	margin:10px;
+}
+
+.grid-container{
+
+	display:grid;
+	grid-template-areas:
+		'header header header header'
+		'mainuno  mainuno maindos  maindos'  
+		'maintres maintres maintres maintres'
+
+	;
+	grid-gap:20px;
+	
+}
+
+.minifotos{
+	display:flex;
+	column-gap: 30px;
+	flex-wrap:wrap;
+	justify-content: center;
+
+}
+
+.minifotos>figure>img{
+	height: 180px;
+	width: 180px;
+	border-radius: 30px;
+
+}
+
+figcaption{
+	margin-left: 20px;
+}
+
+
+figure > img{
+
+	height: 200px;
+	margin: 10px;
+	padding: 10px;
+	width:  200px;
+	float: right;
+	
+}
+
+footer{
+	text-align: center;
+}
+
+.mapa{
+	flex-direction: row;
+}
+
+.mapa > figure > img{
+
+	width: 800px;
+	height: 800px;
+}
+
+}

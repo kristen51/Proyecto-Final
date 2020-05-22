@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset= "utf-8">
+	<meta name="description" content="Formulario DriveFit">
+	<meta name="author" content="Manuel Alted Cánovas">
+	<meta name="keywords" content="Estructura_basica">
+	<link rel="stylesheet" href="../css/style.css"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+	
+
+	<title> Formulario </title>
+
+	<link href="https://fonts.googleapis.com/css?family=Electrolize&display=swap" rel="stylesheet">
+
+	<link rel="apple-touch-icon" sizes="57x57" href="../favicons/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="../favicons/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="../favicons/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="../favicons/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="../favicons/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="../favicons/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="../favicons/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="../favicons/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="../favicons/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="../favicons/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../favicons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="../favicons/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../favicons/favicon-16x16.png">
+	<link rel="manifest" href="../favicons/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+
+	<script src="../js/script.js"/></script>
+	
+</head>
+
+
+<body>
+	<main>
+
+	<div class="mainnofooter">
+		<header class="headerprincipal">
+			<h1><img src="../img/logo.png" alt="logo"> </h1>
+
+			
+
+		</header>
+
+		<nav>
+
+			<ul id="color2">
+				<li><a href="../index.html">Inicio</a></li>
+				<li><a href="multimedia.html">Rutinas</a></li>
+				<li><a href="servicios.html">Servicios</a></li>
+				<li><a href="centros.html">Centros</a></li>
+				<li><a href="conocenos.html">Conócenos</a></li>
+				<li class="activo"><a href="form.html">Registrate</a></li>
+
+			</ul>
+		</nav>
+</div>
+
+<div id="form">
+	<p>Apúntate a nuestro boletín para tener acceso a más contenido</p>
+
+	<form id="form" method="get" action="mailto:kyrati51@gmail.com">
+
+		<fieldset>
+			<legend>Campos obligatorios</legend>
+		<label for="Nombre"><strong>Nombre</strong> </label>
+			<br><br>
+		<input type="text" id="Nombre" name="nombre" size="30" required autofocus>
+			<br><br>
+		<label for="Apellidos"><strong>Apellidos</strong></label>
+			<br><br>
+		<input type="text" id="Apellidos" name="apellidos" size="80" required>
+			<br><br>
+		<label for="email"><strong>Email</strong></label>
+			<br><br>
+		<input type="email" id="email" name="email" required multiple autocomplete="">
+			<br><br>
+	    </fieldset>
+	    <fieldset>
+		<label for="Genero">Género</label>
+			<br>
+		<input type="radio" id="Genero" name="Hombre" value="Hombre">Hombre
+			<br>
+		<input type="radio" id="Genero" name="Mujer" value="Mujer">Mujer
+
+		
+
+		<br>
+		<br> 
+			<label for="edad">Edad</label><br>
+			<select id="edad">
+				<option value="radio">>18</option>
+				<option value="radio">18-25</option>
+				<option value="radio">25-35</option>
+				<option value="radio">35-45</option>
+				<option value="radio">+45</option>
+			</select>
+			<br><br>
+			<label for="tel">Teléfono</label><br>
+				<input type="tel" id="tel" name="tel" placeholder="965.639.695" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}">
+			
+			<br><br>
+		
+		<label for="comentario">¿Algún problema medico a tener en cuenta?</label><br>
+			<textarea id="comentario" name="comentario" cols="50" rows="8"></textarea>
+		</label>
+		<br><br><br>
+
+
+		<input type="submit" name="enviar">
+		</fieldset>
+	</form>
+
+	<br><br>
+
+	<img src="../img/posando2.jpg" alt="foto de arnold" width=30% height=30%>
+
+	<img src="../img/posando1.jpg" alt="foto de arnold" width=50% height=50%>
+
+
+	<audio id="audio" controls>
+			
+
+			<source src="../audio/Music.mp4" controls>
+
+			<source src="../audio/Music.ogg" controls>
+
+			Tu navegador no soporta el audio proporcionado
+
+		</audio>
+		<br>
+    <button type="button" onclick="Purple()">Violeta</button>
+    <button type="button" onclick="Orange()">Naranja</button>
+    <button type="button" onclick="Green()">Verde</button>
+
+
+	<footer id="color">
+
+			<img src="../img/logo.png" alt="logo">
+
+
+			<div class="datos">
+			<p>Direccion: C/Pascual Garcia nº1 3ºC, Novelda </p>
+			<p>Correo electrónico: driveFit@gmail.com </p>
+			<p>Fax: España 313-414-515 , use +420313414515@faxmaker.com</p>
+			<p>Teléfono: 633500421</p>
+			</div>
+			<div class="socialicons">
+				<img src="../img/facebook3.png" alt="facebook" height="60" width="60"/> 	  
+				<img src="../img/twitter.png" alt="twitter" height="60" width="60" />				  
+				<img src="../img/instagram.svg" alt="instagram" height="60" width="60"/>
+				  
+			</div>
+
+			<p>Copyright © 2019. Todos los derechos reservados</p>
+		</footer>
+
+
+</div>
+</main>
+
+
+
+
+</body>
+</html>
