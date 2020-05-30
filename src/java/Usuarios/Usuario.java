@@ -12,6 +12,7 @@ package Usuarios;
  */
 public class Usuario {
     
+    public int cod;
     public String nombreUsuario;
     public String email;
     public String nombre;
@@ -19,17 +20,22 @@ public class Usuario {
     private String contraseña;
     public TipoUsuario tipo;
     
-    public Usuario(String nombreUsuario, String email, String nombre,
-            String apellidos,String contraseña){
-        
+    public static final String PATRON_CONTRASEÑA = "\\d{4}";
+    
+    
+    public Usuario(int cod,String nombreUsuario, String email, String nombre,
+            String apellidos,String contraseña){     
         this.nombreUsuario= nombreUsuario;
         this.email = email;
         this.nombre = nombre;
         this.apellidos = apellidos;
-        this.contraseña = contraseña;
-    
+        this.contraseña = contraseña;   
     }
     
+    public String datosUsuario(){
+    
+        return nombreUsuario + " " +email + nombre + apellidos + cod;        
+    }
     
     public String getNombreCompleto(){
         return nombre+apellidos;    
@@ -37,8 +43,32 @@ public class Usuario {
    
     public String getKey(){
     
-        return contraseña;
-    
+        return contraseña;  
+    }
+
+    public int getCodigo() {
+        return cod;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public String getEmail() {
+        return email;
     }
     
+    public String getNombreReal() {
+        return nombre;
+    }
+    
+    public String getApellidos() {
+        return apellidos;
+    }
+    
+    public String prueba(){
+    
+        return "adios";
+    }
+  
 }

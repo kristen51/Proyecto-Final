@@ -12,6 +12,15 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        
+        <form method="post" action="Registros">
+            <label for="nombreUsuario">Nombre de Usuario</label><input type="text" name="nombreUsuario"/><br/>
+            <label for="correoElectrónico">Correo Electrónico</label><input type="text" name="correoElectrónico"/><br/>
+            <label for="nombreReal">Nombre</label><input type="text" name="nombreReal"/><br/>
+            <label for="apellidos">Apellidos</label><input type="text" name="apellidos"/><br/>
+            <label for="contraseña">Contraseña </label> <input type="text" name="contraseña" value="${Cliente.getCodigoNuevoCliente()}" disabled="true"/><br/> <br/>
+            <input type="submit" value="Enviar"/>
+        </form>
+        
     </body>
 </html>

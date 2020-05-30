@@ -11,5 +11,13 @@ package Usuarios;
  */
 enum TipoUsuario {
     NORMAL,ADMIN
-    
+      
 }
+    
+   
+
+
+
+
+
+
