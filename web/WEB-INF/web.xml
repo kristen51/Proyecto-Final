@@ -8,13 +8,25 @@
         <servlet-name>ServletInicio</servlet-name>
         <servlet-class>servlets.ServletInicio</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Formularios</servlet-name>
+        <servlet-class>servlets.Formularios</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Registros</servlet-name>
-        <url-pattern>/Registros</url-pattern>
+        <url-pattern>/usuario/Registros</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Logins</servlet-name>
+        <url-pattern>/usuario/Logins</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletInicio</servlet-name>
         <url-pattern>/ServletInicio</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Formularios</servlet-name>
+        <url-pattern>/usuario/Formularios</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

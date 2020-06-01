@@ -1,14 +1,11 @@
 <%-- 
-    Document   : pruebaBD
-    Created on : 30-may-2020, 12:47:14
+    Document   : menupruebas
+    Created on : 01-jun-2020, 18:23:31
     Author     : Propietario
 --%>
 
-<%@page import="Usuarios.Usuario"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="Usuarios.ListaUsuarios"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,22 +13,18 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
         
+        <a href="/Proyecto_Final/usuario/registro.jsp">Registro</a>
+        <a href="/Proyecto_Final/usuario/login.jsp">Login</a>
+        <a href="/Proyecto_Final/usuario/formulario.jsp">Formulario</a>
         
-        <%
-            
-                       
-            ListaUsuarios lista = (ListaUsuarios)application.getAttribute("usuariosRegistrados");
-            
-           
-                     
-            System.out.println("adasdasdasdasd");
-   
-        %>
+        <br><br><br>
         
+        <c:if test="${not empty mensajeOK}">
+            <div class="error">${mensajeOK}  </div>
+        </c:if>
         
-        
+        <h2>Usuarios</h2>
         
         <form method="post" action="AltaSocio">
             <c:forEach items="${applicationScope.usuariosRegistrados.getUsuarios()}" var="usuario">
@@ -39,10 +32,7 @@
             </c:forEach>
            <input type="submit" value="Hacer socio"/>
         </form>
-            
-            <p>${lista.prueba()}<p>
-                
-                <a href="inicio.jsp">inicio</a>
+        
         
     </body>
 </html>

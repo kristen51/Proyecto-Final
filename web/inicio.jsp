@@ -12,16 +12,10 @@
         <title>JSP Page</title>
     </head>
     <body>
-        
-        
-        
+              
         <form method="post" action="ServletInicio">
                 <input type="submit" value="Accede" /> 
         </form>
-        
-        
-        
-        
-        
+
     </body>
 </html>

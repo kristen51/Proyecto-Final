@@ -6,6 +6,7 @@
 package servlets;
 
 import Excepciones.AltaUsuarioException;
+import Excepciones.IniciarSesionException;
 import Usuarios.ListaUsuarios;
 import Usuarios.Usuario;
 import java.io.IOException;
@@ -15,8 +16,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import javax.annotation.Resource;
+import javax.security.auth.login.LoginException;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,10 +29,8 @@ import javax.sql.DataSource;
  *
  * @author Propietario
  */
-public class Registros extends HttpServlet {
-    
-    @Resource(name="jdbc/driveFit")
-    private DataSource dataSource;
+@WebServlet(name = "Logins", urlPatterns = {"/Logins"})
+public class Logins extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,89 +42,52 @@ public class Registros extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException, SQLException, IniciarSesionException{
         response.setContentType("text/html;charset=UTF-8");
         ServletContext application = getServletContext();
-               
+        
         ListaUsuarios lista = (ListaUsuarios)application.getAttribute("usuariosRegistrados");
-              
+        String identificador = request.getParameter("identificador");
+        String contraseñaIntroducida = getContraseña(request);
         try{
-            Usuario newUsuario = recogerNuevoUsuario(request);       
             
-            lista.mete(newUsuario);
-            request.setAttribute("mensajeOK", "El cliente se ha añadido correctamente");
+            lista.buscarUsuario(identificador, contraseñaIntroducida);
+            
+            application.setAttribute("usuarioLogeado", "hola");
+            request.setAttribute("mensajeOK", "Muy bien makina");
             application.getRequestDispatcher("/menupruebas.jsp").forward(request, response);
             
- 
-        }catch(AltaUsuarioException ex){
+                      
+        }catch(IniciarSesionException ex){
+            
             request.setAttribute("mensajeError", ex.getMessage());
-            application.getRequestDispatcher("/usuario/registro.jsp").forward(request, response);
-   
+            application.getRequestDispatcher("/usuario/login.jsp").forward(request, response);
+        
         }
-              
+     
     }
     
-    public Usuario recogerNuevoUsuario(HttpServletRequest request) throws AltaUsuarioException{
-        
-        String nombreUsuario = getNombreUsuario(request);
-        String email = getEmail(request);
-        String[] nombreCompleto = getNombreReal(request);
-        String contraseña = getContraseña(request);
-        
-        return new Usuario(nombreUsuario, email,  nombreCompleto[0], nombreCompleto[1], contraseña);
+    public void comprobarUsuario(String identificador,String contraseña,ListaUsuarios lista) throws SQLException, IniciarSesionException{
     
+        lista.buscarUsuario(identificador, contraseña);
+
     }
+     public String getContraseña(HttpServletRequest request) throws IniciarSesionException{
     
-    public String getNombreUsuario(HttpServletRequest request) throws AltaUsuarioException{
+        String contraseña = "1234";
         
-        String nombreUsuario = request.getParameter("nombreUsuario");
-        
-        if(nombreUsuario.isEmpty()){throw new AltaUsuarioException("El nombre de usuario no puede estar vacío");}
-        else if(!Pattern.matches(Usuario.PATRON_NOMBRE_USUARIO, nombreUsuario))
-            {throw new AltaUsuarioException("El nombre de usuario debe tener entre 4 y 8 carácteres");}
-        return nombreUsuario;
-    
-    }
-    
-    public String getEmail(HttpServletRequest request) throws AltaUsuarioException{
-    
-        String email = request.getParameter("email");
-        
-        if(email.isEmpty()){throw new AltaUsuarioException("El email no puede estar vacío");}
-        
-        else if(!Pattern.matches(Usuario.PATRON_EMAIL, email)){throw new AltaUsuarioException("El email debe ser válido");}
-    
-        return email;
-    
-    }
-    
-    public String getContraseña(HttpServletRequest request) throws AltaUsuarioException{
-    
-        String contraseña = request.getParameter("password");
-        
-        if(contraseña.isEmpty()){throw new AltaUsuarioException("La contraseña no puede estar vacía");}
+        if(contraseña.isEmpty()){throw new IniciarSesionException("La contraseña no puede estar vacía");}
         else if (!Pattern.matches(Usuario.PATRON_CONTRASEÑA, contraseña))
-        {throw new AltaUsuarioException("La contraseña debe ser un numero de 4 cifras");}
+        {throw new IniciarSesionException("La contraseña debe ser un numero de 4 cifras");}
+        
     
         return contraseña;
     
     }
     
-    public String[] getNombreReal(HttpServletRequest request) throws AltaUsuarioException{
-    
-        String nombre =  request.getParameter("nombreReal");     
-        String apellidos =  request.getParameter("apellidos");
-        String[] nombreCompleto = new String[2];
-        
-        if(nombre.isEmpty() || apellidos.isEmpty()){      
-            throw new AltaUsuarioException("Tanto el nombre como los apellidos no deben estar vacíos");
-        }
-        nombreCompleto[0] = nombre;
-        nombreCompleto[1] = apellidos;
-    
-        return nombreCompleto;
    
-    }
+    
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -140,7 +104,9 @@ public class Registros extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(Registros.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Logins.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IniciarSesionException ex) {
+            Logger.getLogger(Logins.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -158,7 +124,9 @@ public class Registros extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(Registros.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Logins.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IniciarSesionException ex) {
+            Logger.getLogger(Logins.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

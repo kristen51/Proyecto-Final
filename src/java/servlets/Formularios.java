@@ -5,8 +5,6 @@
  */
 package servlets;
 
-import Productos.ListaProductos;
-import Usuarios.ListaUsuarios;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.annotation.Resource;
@@ -21,7 +19,7 @@ import javax.sql.DataSource;
  *
  * @author Propietario
  */
-public class ServletInicio extends HttpServlet {
+public class Formularios extends HttpServlet {
     
     @Resource(name="jdbc/driveFit")
     private DataSource dataSource;
@@ -37,17 +35,13 @@ public class ServletInicio extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                     
-        response.setContentType("text/html;charset=UTF-8");      
+        response.setContentType("text/html;charset=UTF-8");
         ServletContext application = getServletContext();
         
-        ListaUsuarios usuariosRegistrados = new ListaUsuarios(dataSource);
-        application.setAttribute("usuariosRegistrados", usuariosRegistrados);
-        ListaProductos productos = new ListaProductos(dataSource);
         
-        application.setAttribute("productos", productos);
         
-        application.getRequestDispatcher("/menupruebas.jsp").forward(request, response);
+        
+        
         
     }
 

@@ -1,5 +1,6 @@
 package Usuarios;
 
+import Excepciones.IniciarSesionException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,9 +21,8 @@ import javax.sql.DataSource;
  */
 public class ListaUsuarios {
     
-    private static final String NOMBRE_TABLA = "Usuario";
+    private static final String NOMBRE_TABLA = "USUARIO";
     
-    Usuario[] usuarioss;
     private DataSource dataSource;
     private ArrayList<Usuario> usuarios;
  
@@ -42,15 +42,14 @@ public class ListaUsuarios {
                 try (ResultSet resultSet = statement.executeQuery(sentenciaSQL)) {
 
                     while (resultSet.next()) {
-
-                        int codigo = resultSet.getInt("cod");
+                       
                         String nombreUsuario = resultSet.getString("nombreUsuario");
                         String email = resultSet.getString("email");
                         String nombreReal = resultSet.getString("nombreReal");
                         String apellidos = resultSet.getString("apellidos");
                         String contraseña = resultSet.getString("contraseña");
                         
-                        usuarios.add(new Usuario(codigo,nombreUsuario,email,nombreReal,apellidos,contraseña));
+                        usuarios.add(new Usuario(nombreUsuario,email,nombreReal,apellidos,contraseña));
                     }
                 }
             }
@@ -58,16 +57,49 @@ public class ListaUsuarios {
         return usuarios;
     }
     
+    public String buscarUsuario(String identificador, String contraseña) throws SQLException, IniciarSesionException{
+    
+        
+        String sentenciaSQL ="select nombreUsuario, email, contraseña from " + NOMBRE_TABLA +
+                " where nombreUsuario='"+identificador+"' OR email='"+identificador+"' AND contraseña ="+contraseña;
+        
+        String nombreUsuario = null;
+        String email = null;
+        String password = null;
+        
+        try(Connection connection = this.dataSource.getConnection()){
+            try(Statement statement = connection.createStatement()){
+                try(ResultSet resultSet = statement.executeQuery(sentenciaSQL)){
+                    
+                    while(resultSet.next()){
+                    
+                    nombreUsuario = resultSet.getString("nombreUsuario");
+                    email = resultSet.getString("email");
+                    password = "1234";
+                    }                 
+                    if(nombreUsuario == null){
+                        throw new IniciarSesionException("El nombre o correo electrónico no es correcto");           
+                    }
+                    else if(!password.equals(contraseña)){
+                        throw new IniciarSesionException("La contraseña es incorrecta");                    
+                    }
+                    else{
+                        return nombreUsuario;              
+                    }
+                }
+            }
+        }
+    }
     public void mete(Usuario usuario) throws SQLException {
 
         String sentenciaSQL = "INSERT INTO " + NOMBRE_TABLA + " VALUES("
                 + usuario.getCodigo() + ", '"
-                + usuario.getNombreUsuario()+ "', "
+                + usuario.getNombreUsuario()+ "', '"
                 + usuario.getEmail()+ "', "
-                + usuario.getNombreReal()+ "', "
-                + usuario.getApellidos()+ "', "
-                + usuario.getKey()+ "', ";
-                
+                + usuario.getContraseña()+ ",'"
+                + usuario.getNombreReal()+ "', '"
+                + usuario.getApellidos()+ 
+                "','normal')";
 
         try (Connection connection = this.dataSource.getConnection()) {
             try (Statement statement = connection.createStatement()) {
