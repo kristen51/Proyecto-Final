@@ -5,6 +5,7 @@
  */
 package servlets;
 
+import Formularios.ListaFormularios;
 import Productos.ListaProductos;
 import Usuarios.ListaUsuarios;
 import java.io.IOException;
@@ -43,9 +44,11 @@ public class ServletInicio extends HttpServlet {
         
         ListaUsuarios usuariosRegistrados = new ListaUsuarios(dataSource);
         application.setAttribute("usuariosRegistrados", usuariosRegistrados);
-        ListaProductos productos = new ListaProductos(dataSource);
-        
+        ListaProductos productos = new ListaProductos(dataSource);       
         application.setAttribute("productos", productos);
+        ListaFormularios formularios = new ListaFormularios(dataSource);
+        application.setAttribute("formularios", formularios);
+        application.setAttribute("usuarioLogeado", "");
         
         application.getRequestDispatcher("/menupruebas.jsp").forward(request, response);
         

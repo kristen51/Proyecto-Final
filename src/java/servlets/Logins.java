@@ -48,15 +48,20 @@ public class Logins extends HttpServlet {
         
         ListaUsuarios lista = (ListaUsuarios)application.getAttribute("usuariosRegistrados");
         String identificador = request.getParameter("identificador");
-        String contraseñaIntroducida = getContraseña(request);
-        try{
-            
-            lista.buscarUsuario(identificador, contraseñaIntroducida);
-            
-            application.setAttribute("usuarioLogeado", "hola");
-            request.setAttribute("mensajeOK", "Muy bien makina");
-            application.getRequestDispatcher("/menupruebas.jsp").forward(request, response);
-            
+        try{       
+            String contraseñaIntroducida = getContraseña(request);
+                 
+            if(lista.buscarUsuario(identificador) == null){throw new IniciarSesionException("Nombre de usuario o email incorrecto");}
+            else{
+                String contraseñaEsperada = lista.buscarUsuario(identificador);
+                    if(comprobarContraseña(contraseñaIntroducida,contraseñaEsperada) != true){throw new IniciarSesionException("Contraseña incorrecta");}
+                    else{
+                             
+                        application.setAttribute("usuarioLogeado", lista.getNombreUsuarioSegunIdentificador(identificador));
+                        request.setAttribute("mensajeOK", "Muy bien makina");
+                        application.getRequestDispatcher("/index.jsp").forward(request, response);
+             }
+            }
                       
         }catch(IniciarSesionException ex){
             
@@ -67,14 +72,16 @@ public class Logins extends HttpServlet {
      
     }
     
-    public void comprobarUsuario(String identificador,String contraseña,ListaUsuarios lista) throws SQLException, IniciarSesionException{
     
-        lista.buscarUsuario(identificador, contraseña);
+    public boolean comprobarContraseña(String contraseñaIntroducida, String contraseñaEsperada) throws SQLException, IniciarSesionException{
+    
+      return contraseñaIntroducida.equals(contraseñaEsperada);
 
     }
+    
      public String getContraseña(HttpServletRequest request) throws IniciarSesionException{
     
-        String contraseña = "1234";
+        String contraseña = request.getParameter("password");
         
         if(contraseña.isEmpty()){throw new IniciarSesionException("La contraseña no puede estar vacía");}
         else if (!Pattern.matches(Usuario.PATRON_CONTRASEÑA, contraseña))

@@ -30,6 +30,22 @@ public class ListaUsuarios {
     public ListaUsuarios(DataSource dataSource){
         this.dataSource = dataSource;      
     }
+    
+    public int getNumUsuarios() throws SQLException{
+        
+        String sentenciaSQL = "select * from " + NOMBRE_TABLA;
+        int i = 0;
+        try (Connection connection = this.dataSource.getConnection()) {
+            try (Statement statement = connection.createStatement()) {
+                try (ResultSet resultSet = statement.executeQuery(sentenciaSQL)) {
+                    while (resultSet.next()) {
+                       i++;                                                                  
+                    }
+                }
+            }
+        }
+        return i;
+    }   
      
     public ArrayList<Usuario> getUsuarios() throws SQLException{
     
@@ -42,14 +58,14 @@ public class ListaUsuarios {
                 try (ResultSet resultSet = statement.executeQuery(sentenciaSQL)) {
 
                     while (resultSet.next()) {
-                       
+                        int cod = resultSet.getInt("cod");
                         String nombreUsuario = resultSet.getString("nombreUsuario");
                         String email = resultSet.getString("email");
                         String nombreReal = resultSet.getString("nombreReal");
                         String apellidos = resultSet.getString("apellidos");
                         String contraseña = resultSet.getString("contraseña");
                         
-                        usuarios.add(new Usuario(nombreUsuario,email,nombreReal,apellidos,contraseña));
+                        usuarios.add(new Usuario(cod,nombreUsuario,email,nombreReal,apellidos,contraseña));
                     }
                 }
             }
@@ -57,15 +73,38 @@ public class ListaUsuarios {
         return usuarios;
     }
     
-    public String buscarUsuario(String identificador, String contraseña) throws SQLException, IniciarSesionException{
+    public Usuario getUsuario(int cod) throws SQLException{
+    
+        String sentenciaSQL = "select * from " + NOMBRE_TABLA + " where cod=" + cod;
+        
+        try (Connection connection = this.dataSource.getConnection()) {
+            try (Statement statement = connection.createStatement()) {
+                try (ResultSet resultSet = statement.executeQuery(sentenciaSQL)) {
+
+                    while (resultSet.next()) {    
+                       
+                        String nombreUsuario = resultSet.getString("nombreUsuario");
+                        String email = resultSet.getString("email");
+                        String nombreReal = resultSet.getString("nombreReal");
+                        String apellidos = resultSet.getString("apellidos");
+                        String contraseña = resultSet.getString("contraseña");                        
+                        return new Usuario(cod,nombreUsuario,email,nombreReal,apellidos,contraseña);
+                    }
+                }
+            }
+        }
+        return null; 
+    }
+    
+    public String buscarUsuario(String identificador) throws SQLException{
     
         
         String sentenciaSQL ="select nombreUsuario, email, contraseña from " + NOMBRE_TABLA +
-                " where nombreUsuario='"+identificador+"' OR email='"+identificador+"' AND contraseña ="+contraseña;
+                " where nombreUsuario='"+identificador+"' OR email='"+identificador+"'";
         
-        String nombreUsuario = null;
-        String email = null;
-        String password = null;
+        String nombreUsuarioEncontrado = null;
+        String emailEncontrado = null;
+        String passwordEncontrado = null;
         
         try(Connection connection = this.dataSource.getConnection()){
             try(Statement statement = connection.createStatement()){
@@ -73,27 +112,83 @@ public class ListaUsuarios {
                     
                     while(resultSet.next()){
                     
-                    nombreUsuario = resultSet.getString("nombreUsuario");
-                    email = resultSet.getString("email");
-                    password = "1234";
-                    }                 
-                    if(nombreUsuario == null){
-                        throw new IniciarSesionException("El nombre o correo electrónico no es correcto");           
+                    nombreUsuarioEncontrado = resultSet.getString("nombreUsuario");
+                    emailEncontrado = resultSet.getString("email");
+                    passwordEncontrado = resultSet.getString("contraseña");
                     }
-                    else if(!password.equals(contraseña)){
-                        throw new IniciarSesionException("La contraseña es incorrecta");                    
+                    
+                    if(nombreUsuarioEncontrado == null){
+                        return null;                   
                     }
-                    else{
-                        return nombreUsuario;              
+                    else{                                      
+                    return passwordEncontrado;   
                     }
                 }
             }
         }
     }
-    public void mete(Usuario usuario) throws SQLException {
+    
+    public String getNombreUsuarioSegunIdentificador(String identificador) throws SQLException{
+    
+        String sentenciaSQL ="select nombreUsuario, email, contraseña from " + NOMBRE_TABLA +
+                " where nombreUsuario='"+identificador+"' OR email='"+identificador+"'";
+        String nombreUsuarioEncontrado = null;
+        
+        try(Connection connection = this.dataSource.getConnection()){
+            try(Statement statement = connection.createStatement()){
+                try(ResultSet resultSet = statement.executeQuery(sentenciaSQL)){
+                    while(resultSet.next()){
+                    
+                    nombreUsuarioEncontrado = resultSet.getString("nombreUsuario");
+                    }
+                    return nombreUsuarioEncontrado;                    
+                }            
+            }
+        }
+    }
+    
+    public int getCodSegunIdentificador(String identificador) throws SQLException{
+    
+        String sentenciaSQL ="select nombreUsuario, email, contraseña from " + NOMBRE_TABLA +
+                " where nombreUsuario='"+identificador+"' OR email='"+identificador+"'";
+        int cod= 0;
+        
+        try(Connection connection = this.dataSource.getConnection()){
+            try(Statement statement = connection.createStatement()){
+                try(ResultSet resultSet = statement.executeQuery(sentenciaSQL)){
+                    while(resultSet.next()){                   
+                    cod =Integer.parseInt(resultSet.getString("cod"));   
+                    }
+                    return cod;                    
+                }            
+            }
+        }
+    }
+    
+    public String[] getNombreCompletoSegunIdentificador(String identificador) throws SQLException{
+    
+        String sentenciaSQL ="select nombreReal,apellidos from " + NOMBRE_TABLA +
+                " where nombreUsuario='"+identificador+"' OR email='"+identificador+"'";
+        String[] nombreCompleto = new String[2];
+        
+        try(Connection connection = this.dataSource.getConnection()){
+            try(Statement statement = connection.createStatement()){
+                try(ResultSet resultSet = statement.executeQuery(sentenciaSQL)){
+                    while(resultSet.next()){           
+                        
+                    nombreCompleto[0] = resultSet.getString("nombreReal");
+                    nombreCompleto[1] = resultSet.getString("apellidos");
+                    }
+                    return nombreCompleto;                    
+                }            
+            }
+        }
+    }
+        
+    public void mete(Usuario usuario,int numUsuarios) throws SQLException {
 
         String sentenciaSQL = "INSERT INTO " + NOMBRE_TABLA + " VALUES("
-                + usuario.getCodigo() + ", '"
+                + numUsuarios + ", '"
                 + usuario.getNombreUsuario()+ "', '"
                 + usuario.getEmail()+ "', "
                 + usuario.getContraseña()+ ",'"
@@ -108,12 +203,24 @@ public class ListaUsuarios {
         }
     }
     
-    public String prueba(){
+    public void update(Usuario usuario) throws SQLException{
     
-        return "adios";
+        String sentenciaSQL ="UPDATE "+ NOMBRE_TABLA +
+                " SET nombreUsuario ='"+ usuario.getNombreUsuario()
+                +"', email ='"+ usuario.getEmail()
+                +"', contraseña ='"+ usuario.getContraseña()
+                +"', nombreReal ='"+ usuario.getNombreReal()
+                +"', apellidos ='"+ usuario.getApellidos()
+                +"' WHERE cod ="+usuario.getCodigo();
+                
+        try (Connection connection = this.dataSource.getConnection()) {
+            try (Statement statement = connection.createStatement()) {
+                statement.executeUpdate(sentenciaSQL);
+            }
+        }
     }
+      }
     
-    
-}
+
 
 

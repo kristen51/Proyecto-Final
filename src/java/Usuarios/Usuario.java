@@ -13,26 +13,23 @@ package Usuarios;
 public class Usuario {
     
     
-    public int cod;
-    public String nombreUsuario;
-    public String email;
-    public String nombre;
-    public String apellidos;
+    private int cod;
+    private String nombreUsuario;
+    private String email;
+    private String nombre;
+    private String apellidos;
     private String contraseña;
-    public TipoUsuario tipo;
-    
-    private static int codigoNuevoUsuario = 5;
+    private TipoUsuario tipo;
     
     public static final String PATRON_NOMBRE_USUARIO= "\\w{4,8}";
     public static final String PATRON_EMAIL= "\\w{2,}.@\\w{2,}.\\w{2,}";
     public static final String PATRON_CONTRASEÑA = "\\d{4}";
     
     
-    public Usuario(String nombreUsuario, String email, String nombre,
+    public Usuario(int cod,String nombreUsuario, String email, String nombre,
             String apellidos,String contraseña){
         
-        this.cod = codigoNuevoUsuario;
-        codigoNuevoUsuario++;
+        this.cod = cod;
         this.nombreUsuario= nombreUsuario;
         this.email = email;
         this.nombre = nombre;
@@ -42,7 +39,7 @@ public class Usuario {
     
     public String datosUsuario(){
     
-        return nombreUsuario + " " +email + nombre + apellidos + cod;        
+        return nombreUsuario + " " +email +" "+ nombre + apellidos + cod;        
     }
     
     public String getNombreCompleto(){
@@ -73,10 +70,6 @@ public class Usuario {
     public String getApellidos() {
         return apellidos;
     }
-    
-    public String prueba(){
-    
-        return "adios";
-    }
+
   
 }

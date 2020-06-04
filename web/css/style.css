@@ -9,6 +9,39 @@ p {
 	font-size: 140%;
 }
 
+.funcionalidades{
+    
+    float:right;
+    font-size: 250%;
+    background-color: lightblue;
+}
+.funcionalidades>a{
+    
+    color:black;
+    text-decoration: none;
+    
+}
+
+.productos{
+    display:flex;
+    flex-wrap:wrap;
+    align-content: space-around;
+    
+   
+}
+.producto{
+    flex-basis: auto;
+    height: 33%;
+    width: 33%;
+    
+}
+
+.producto>img{
+    height: 200px;
+    width: 200px;
+}
+
+
 /*header*/
 h1{
 	text-align: center;
@@ -251,6 +284,7 @@ video{
 }
 #bienvenido{
 	font-size: 2.5em;
+        
 }
 
 input:required{

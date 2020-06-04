@@ -14,7 +14,12 @@
     <body>
               
         <form method="post" action="ServletInicio">
-                <input type="submit" value="Accede" /> 
+                <input type="submit" value="Accede al menu de pruebas" /> 
+        </form>
+        
+        
+        <form method="post" action="ServletInicioWeb">
+                <input type="submit" value="Accede a la web" /> 
         </form>
 
     </body>

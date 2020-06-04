@@ -12,13 +12,33 @@
         <servlet-name>Formularios</servlet-name>
         <servlet-class>servlets.Formularios</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CerrarSesion</servlet-name>
+        <servlet-class>servlets.CerrarSesion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdministracionUsuarios</servlet-name>
+        <servlet-class>servlets.AdministracionUsuarios</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ModificarUsuarios</servlet-name>
+        <servlet-class>servlets.ModificarUsuarios</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletInicioWeb</servlet-name>
+        <servlet-class>servlets.ServletInicioWeb</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Registros</servlet-name>
-        <url-pattern>/usuario/Registros</url-pattern>
+        <url-pattern>/Registros</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Logins</servlet-name>
         <url-pattern>/usuario/Logins</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Logins</servlet-name>
+        <url-pattern>/Logins</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletInicio</servlet-name>
@@ -26,7 +46,27 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Formularios</servlet-name>
-        <url-pattern>/usuario/Formularios</url-pattern>
+        <url-pattern>/html/Formularios</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CerrarSesion</servlet-name>
+        <url-pattern>/usuario/CerrarSesion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CerrarSesion</servlet-name>
+        <url-pattern>/CerrarSesion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdministracionUsuarios</servlet-name>
+        <url-pattern>/AdministracionUsuarios</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificarUsuarios</servlet-name>
+        <url-pattern>/ModificarUsuarios</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletInicioWeb</servlet-name>
+        <url-pattern>/ServletInicioWeb</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

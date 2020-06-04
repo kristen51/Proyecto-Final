@@ -20,7 +20,7 @@
            <label for="nombreReal">Nombre</label><input type="text" name="nombreReal"/><br/>
            <label for="apellidos">Apellidos</label><input type="text" name="apellidos"/><br/>
            </c:if>
-           <label for="email">Correo Electrónico</label><input type="text" name="correoElectrónico"/><br/>
+           <label for="email">Correo Electrónico</label><input type="text" name="email"/><br/>
            <label for="comentario">Comentario</label><input type="text" name="comentario"/><br/>
            <label for="telefono">Teléfono</label><input type="text" name="telefono"/><br/>
              <br/>

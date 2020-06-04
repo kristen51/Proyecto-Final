@@ -17,24 +17,36 @@ public class Producto {
     public String nombre;
     public double precio;
     public String rutaFotos;
+    public int cantidad;
     public Opinion[] opiniones;
     
-    public Producto(int cod,String nombre,double precio,String rutaFotos,
-            Opinion opiniones){        
+    public Producto(int cod,String nombre,double precio,String rutaFotos,int cantidad){        
         this.cod = cod;
         this.nombre = nombre;
         this.precio = precio;
         this.rutaFotos = rutaFotos;
-        this.opiniones = new Opinion[0];
-    
+        this.cantidad = cantidad;
     }
     
-    public void anyadeOpinion(Opinion newOpinion){
-    
-        opiniones = Arrays.copyOf(opiniones, opiniones.length+1);
-        opiniones[opiniones.length-1] = newOpinion;
-    
+    public int getCod(){
+        return cod;
     }
+    public String getNombre(){
+        return nombre;
+    }
+    
+    public double getPrecio(){
+        return precio;
+    }
+    
+    public String getRutaFotos(){
+        return rutaFotos;
+    }
+    
+    public int getCantidad(){
+        return cantidad;
+    }
+
     
     
     

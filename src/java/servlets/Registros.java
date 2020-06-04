@@ -6,6 +6,7 @@
 package servlets;
 
 import Excepciones.AltaUsuarioException;
+import Excepciones.IniciarSesionException;
 import Usuarios.ListaUsuarios;
 import Usuarios.Usuario;
 import java.io.IOException;
@@ -41,18 +42,20 @@ public class Registros extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException, SQLException, IniciarSesionException {
         response.setContentType("text/html;charset=UTF-8");
         ServletContext application = getServletContext();
                
         ListaUsuarios lista = (ListaUsuarios)application.getAttribute("usuariosRegistrados");
+        int numUsuarios = lista.getNumUsuarios();
               
         try{
+            
             Usuario newUsuario = recogerNuevoUsuario(request);       
             
-            lista.mete(newUsuario);
-            request.setAttribute("mensajeOK", "El cliente se ha añadido correctamente");
-            application.getRequestDispatcher("/menupruebas.jsp").forward(request, response);
+            lista.mete(newUsuario,numUsuarios);
+            request.setAttribute("mensajeOK", "El usuario se ha añadido correctamente");
+            application.getRequestDispatcher("/index.jsp").forward(request, response);
             
  
         }catch(AltaUsuarioException ex){
@@ -63,16 +66,24 @@ public class Registros extends HttpServlet {
               
     }
     
-    public Usuario recogerNuevoUsuario(HttpServletRequest request) throws AltaUsuarioException{
+    public Usuario recogerNuevoUsuario(HttpServletRequest request) throws AltaUsuarioException, SQLException{
         
-        String nombreUsuario = getNombreUsuario(request);
+        ServletContext application = getServletContext();
+        ListaUsuarios lista = (ListaUsuarios)application.getAttribute("usuariosRegistrados");
+        
+        String nombreUsuario = getNombreUsuario(request);       
         String email = getEmail(request);
+              
+        if(!(lista.buscarUsuario(email) == null) || !(lista.buscarUsuario(nombreUsuario) == null)){
+            throw new AltaUsuarioException("Ya existe un usuario con ese nombre o email");
+        }
+        else{       
         String[] nombreCompleto = getNombreReal(request);
-        String contraseña = getContraseña(request);
-        
-        return new Usuario(nombreUsuario, email,  nombreCompleto[0], nombreCompleto[1], contraseña);
-    
+        String contraseña = getContraseña(request);  
+        int numUsuarios = lista.getNumUsuarios();
+        return new Usuario(numUsuarios,nombreUsuario, email,  nombreCompleto[0], nombreCompleto[1], contraseña);   
     }
+}
     
     public String getNombreUsuario(HttpServletRequest request) throws AltaUsuarioException{
         
@@ -141,6 +152,8 @@ public class Registros extends HttpServlet {
             processRequest(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(Registros.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IniciarSesionException ex) {
+            Logger.getLogger(Registros.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -158,6 +171,8 @@ public class Registros extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
+            Logger.getLogger(Registros.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IniciarSesionException ex) {
             Logger.getLogger(Registros.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

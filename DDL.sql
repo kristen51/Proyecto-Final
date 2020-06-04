@@ -1,8 +1,8 @@
 CREATE TABLE USUARIO(
 cod integer PRIMARY KEY,
-nombreUsuario varchar2(50) not null,
-email varchar2(50) not null,
-contraseña varchar2(50)not null,
+nombreUsuario varchar2(8) UNIQUE NOT NULL,
+email varchar2(50) UNIQUE NOT NULL,
+contraseña varchar2(4)not null,
 nombreReal varchar2(50),
 apellidos varchar2(50),
 tipo varchar2(50) DEFAULT 'normal'
@@ -11,8 +11,8 @@ tipo varchar2(50) DEFAULT 'normal'
 
 CREATE TABLE PRODUCTO(
 cod integer PRIMARY KEY,
-nombre varchar(50) unique,
-precio float(2),
+nombre varchar(50) unique not null,
+precio decimal(8,2),
 rutaFotos varchar2(100)
 );
 
@@ -24,6 +24,17 @@ producto integer NOT NULL,
 usuario integer NOT NULL,
 CONSTRAINT FK_OPINION_USUARIO FOREIGN KEY(usuario) references USUARIO,
 CONSTRAINT FK_OPINION_PRODUCTO FOREIGN KEY(producto) references PRODUCTO
+);
+
+CREATE TABLE FORMULARIO(
+cod integer PRIMARY KEY,
+nombre varchar2(50),
+apellidos varchar2(50),
+email varchar2(50),
+telefono number(9),
+comentario varchar2(250),
+usuario integer NOT NULL,
+CONSTRAINT FK_FORMULARIO_USUARIO FOREIGN KEY(usuario) REFERENCES USUARIO
 );
 
 ALTER TABLE OPINION ADD CONSTRAINT RANGO_PUNTUACION CHECK(puntuacion<=10 and puntuacion>=0);
