@@ -67,8 +67,9 @@
 
 	<form method="post" action="AdministracionUsuarios">
         <c:forEach items="${applicationScope.usuariosRegistrados.getUsuarios()}" var="usuario">
-                <input type="radio" name="usuario" value="${usuario.getCodigo()}"> ${usuario.datosUsuario()}<br/>
+                <input type="radio" name="usuario" value="${usuario.getCodigo()}"> ${usuario.datosUsuario()}
                 <input type="submit" value="Enviar"/>
+                <br/>
         </c:forEach>
         </form>
 
