@@ -12,22 +12,25 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Propietario/Documents/NetBeansProjects/Proyecto%20Final/src/java/servlets/ModificarUsuarios.java</file>
-            <file>file:/C:/Users/Propietario/Documents/NetBeansProjects/Proyecto%20Final/src/java/servlets/ServletInicio.java</file>
+            <file>file:/C:/Users/Propietario/Documents/NetBeansProjects/Proyecto%20Final/web/html/opinar.jsp</file>
             <file>file:/C:/Users/Propietario/Documents/NetBeansProjects/Proyecto%20Final/src/java/Usuarios/Usuario.java</file>
-            <file>file:/C:/Users/Propietario/Documents/NetBeansProjects/Proyecto%20Final/src/java/servlets/Logins.java</file>
             <file>file:/C:/Users/Propietario/Documents/NetBeansProjects/Proyecto%20Final/src/java/Usuarios/ListaUsuarios.java</file>
-            <file>file:/C:/Users/Propietario/Documents/NetBeansProjects/Proyecto%20Final/src/java/servlets/AdministracionUsuarios.java</file>
+            <file>file:/C:/Users/Propietario/Documents/NetBeansProjects/Proyecto%20Final/web/registro.jsp</file>
+            <file>file:/C:/Users/Propietario/Documents/NetBeansProjects/Proyecto%20Final/web/html/productos.jsp</file>
+            <file>file:/C:/Users/Propietario/Documents/NetBeansProjects/Proyecto%20Final/web/modificarUsuarios.jsp</file>
             <file>file:/C:/Users/Propietario/Documents/NetBeansProjects/Proyecto%20Final/src/java/Formularios/ListaFormularios.java</file>
-            <file>file:/C:/Users/Propietario/Documents/NetBeansProjects/Proyecto%20Final/web/menupruebas.jsp</file>
-            <file>file:/C:/Users/Propietario/Documents/NetBeansProjects/Proyecto%20Final/web/usuario/formulario.jsp</file>
+            <file>file:/C:/Users/Propietario/Documents/NetBeansProjects/Proyecto%20Final/src/java/servlets/IrAOpiniones.java</file>
+            <file>file:/C:/Users/Propietario/Documents/NetBeansProjects/Proyecto%20Final/src/java/Opiniones/Opinion.java</file>
             <file>file:/C:/Users/Propietario/Documents/NetBeansProjects/Proyecto%20Final/src/java/servlets/Formularios.java</file>
-            <file>file:/C:/Users/Propietario/Documents/NetBeansProjects/Proyecto%20Final/web/usuario/registro.jsp</file>
-            <file>file:/C:/Users/Propietario/Documents/NetBeansProjects/Proyecto%20Final/web/usuario/modificarUsuarios.jsp</file>
-            <file>file:/C:/Users/Propietario/Documents/NetBeansProjects/Proyecto%20Final/web/usuario/administracionUsuarios.jsp</file>
+            <file>file:/C:/Users/Propietario/Documents/NetBeansProjects/Proyecto%20Final/web/html/form.jsp</file>
+            <file>file:/C:/Users/Propietario/Documents/NetBeansProjects/Proyecto%20Final/web/css/style.css</file>
+            <file>file:/C:/Users/Propietario/Documents/NetBeansProjects/Proyecto%20Final/src/java/Opiniones/ListaOpiniones.java</file>
+            <file>file:/C:/Users/Propietario/Documents/NetBeansProjects/Proyecto%20Final/web/login.jsp</file>
+            <file>file:/C:/Users/Propietario/Documents/NetBeansProjects/Proyecto%20Final/src/java/servlets/Opiniones.java</file>
+            <file>file:/C:/Users/Propietario/Documents/NetBeansProjects/Proyecto%20Final/web/index.jsp</file>
             <file>file:/C:/Users/Propietario/Documents/NetBeansProjects/Proyecto%20Final/src/java/Formularios/Formulario.java</file>
             <file>file:/C:/Users/Propietario/Documents/NetBeansProjects/Proyecto%20Final/web/inicio.jsp</file>
-            <file>file:/C:/Users/Propietario/Documents/NetBeansProjects/Proyecto%20Final/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/Propietario/Documents/NetBeansProjects/Proyecto%20Final/src/java/servlets/ServletInicioWeb.java</file>
         </group>
     </open-files>
 </project-private>

@@ -54,6 +54,23 @@ public class ListaProductos {
         return productos;
     }
     
+    public void mete(Producto producto) throws SQLException {
+
+        String sentenciaSQL = "INSERT INTO " + NOMBRE_TABLA + " VALUES("
+                + producto.getCod()+ ",'"
+                + producto.getNombre()+ "',"
+                + producto.getPrecio()+ ", '"
+                + producto.getRutaFotos()+ "',"
+                + producto.getCantidad()+ ")";
+
+
+        try (Connection connection = this.dataSource.getConnection()) {
+            try (Statement statement = connection.createStatement()) {
+                statement.executeUpdate(sentenciaSQL);
+            }
+        }
+    }
+    
     
     
 }

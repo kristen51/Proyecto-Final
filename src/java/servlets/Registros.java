@@ -53,14 +53,14 @@ public class Registros extends HttpServlet {
             
             Usuario newUsuario = recogerNuevoUsuario(request);       
             
-            lista.mete(newUsuario,numUsuarios);
+            lista.mete(newUsuario);
             request.setAttribute("mensajeOK", "El usuario se ha añadido correctamente");
             application.getRequestDispatcher("/index.jsp").forward(request, response);
             
  
         }catch(AltaUsuarioException ex){
             request.setAttribute("mensajeError", ex.getMessage());
-            application.getRequestDispatcher("/usuario/registro.jsp").forward(request, response);
+            application.getRequestDispatcher("/registro.jsp").forward(request, response);
    
         }
               

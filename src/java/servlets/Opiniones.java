@@ -5,28 +5,25 @@
  */
 package servlets;
 
-import Formularios.ListaFormularios;
 import Opiniones.ListaOpiniones;
-import Productos.ListaProductos;
+import Opiniones.Opinion;
 import Usuarios.ListaUsuarios;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.annotation.Resource;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 
 /**
  *
  * @author Propietario
  */
-public class ServletInicioWeb extends HttpServlet {
-    
-    @Resource(name="jdbc/driveFit")
-    private DataSource dataSource;
+public class Opiniones extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,23 +35,26 @@ public class ServletInicioWeb extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         ServletContext application = getServletContext();
         
-        ListaUsuarios usuariosRegistrados = new ListaUsuarios(dataSource);
-        application.setAttribute("usuariosRegistrados", usuariosRegistrados);
-        ListaProductos productos = new ListaProductos(dataSource);       
-        application.setAttribute("productos", productos);
-        ListaFormularios formularios = new ListaFormularios(dataSource);
-        application.setAttribute("formularios", formularios);
-        ListaOpiniones opiniones = new ListaOpiniones(dataSource);
-        application.setAttribute("opiniones", opiniones);
+        
+        ListaUsuarios listaUsuarios = (ListaUsuarios) application.getAttribute("usuariosRegistrados");       
+        ListaOpiniones listaOpiniones = (ListaOpiniones) application.getAttribute("opiniones");
+        
+        String opinion = request.getParameter("opinion");
+        
+        int usuario = listaUsuarios.getCodSegunIdentificador((String) application.getAttribute("usuarioLogeado"));
+        int productos = Integer.parseInt((String) application.getAttribute("productoOpinion"));
+        int puntuacion = Integer.parseInt(request.getParameter("puntuacion"));
+        
+    
+        listaOpiniones.mete(new Opinion(opinion,puntuacion,productos,usuario));
         
         
-        application.setAttribute("usuarioLogeado", "");
+        application.getRequestDispatcher("/html/productos.jsp").forward(request, response);
         
-        application.getRequestDispatcher("/index.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -69,7 +69,11 @@ public class ServletInicioWeb extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(Opiniones.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -83,7 +87,11 @@ public class ServletInicioWeb extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(Opiniones.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

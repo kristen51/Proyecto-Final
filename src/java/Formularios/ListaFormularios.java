@@ -7,6 +7,7 @@ package Formularios;
 
 import Usuarios.Usuario;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -31,11 +32,11 @@ public class ListaFormularios {
     public void mete(Formulario formulario) throws SQLException {
 
         String sentenciaSQL = "INSERT INTO " + NOMBRE_TABLA + " VALUES("
-                + formulario.getCodigo() + ", '"
+                + getNumUsuarios() + ", '"
                 + formulario.getNombreReal()+ "', '"
                 + formulario.getApellidos()+"', '"
-                + formulario.getEmail()+ "', '"
-                + formulario.getTelefono()+"','"
+                + formulario.getEmail()+ "',"
+                + formulario.getTelefono()+",'"
                 + formulario.getComentario()+"',"
                 + formulario.getUsuario()+")";
         
@@ -45,5 +46,21 @@ public class ListaFormularios {
             }
         }
     }
+    
+    public int getNumUsuarios() throws SQLException{
+        
+        String sentenciaSQL = "select * from " + NOMBRE_TABLA;
+        int i = 0;
+        try (Connection connection = this.dataSource.getConnection()) {
+            try (Statement statement = connection.createStatement()) {
+                try (ResultSet resultSet = statement.executeQuery(sentenciaSQL)) {
+                    while (resultSet.next()) {
+                       i++;                                                                  
+                    }
+                }
+            }
+        }
+        return i;
+    }   
 
 }

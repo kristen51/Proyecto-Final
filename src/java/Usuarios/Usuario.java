@@ -19,7 +19,7 @@ public class Usuario {
     private String nombre;
     private String apellidos;
     private String contraseña;
-    private TipoUsuario tipo;
+    private String tipo;
     
     public static final String PATRON_NOMBRE_USUARIO= "\\w{4,8}";
     public static final String PATRON_EMAIL= "\\w{2,}.@\\w{2,}.\\w{2,}";
@@ -37,9 +37,20 @@ public class Usuario {
         this.contraseña = contraseña;   
     }
     
+    public Usuario(Usuario usuario){
+        
+        this.cod = usuario.getCodigo();
+        this.nombreUsuario = usuario.getNombreUsuario();
+        this.email = usuario.getEmail();
+        this.nombre = usuario.getNombreReal();
+        this.apellidos = usuario.getApellidos();
+        this.contraseña = usuario.getContraseña();
+    
+    }
+
     public String datosUsuario(){
     
-        return nombreUsuario + " " +email +" "+ nombre + apellidos + cod;        
+        return nombreUsuario + " " +email +" "+ nombre +" "+ apellidos;        
     }
     
     public String getNombreCompleto(){

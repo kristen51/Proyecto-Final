@@ -66,7 +66,7 @@ public class Logins extends HttpServlet {
         }catch(IniciarSesionException ex){
             
             request.setAttribute("mensajeError", ex.getMessage());
-            application.getRequestDispatcher("/usuario/login.jsp").forward(request, response);
+            application.getRequestDispatcher("/login.jsp").forward(request, response);
         
         }
      

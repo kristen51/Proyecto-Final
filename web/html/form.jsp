@@ -1,7 +1,7 @@
 <%-- 
     Document   : form
     Created on : 04-jun-2020, 13:26:12
-    Author     : Propietario
+    Author     : Manuel
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -63,7 +63,7 @@
 </div>
 
 <div id="form">
-	<p>Apúntate a nuestro boletín para tener acceso a más contenido</p>
+	<p>Formulario de contacto</p>
 
 	<form method="post" action="Formularios">
            <c:if test="${empty usuarioLogeado}">
@@ -71,7 +71,7 @@
            <label for="apellidos">Apellidos</label><input type="text" name="apellidos"/><br/><br/>
            </c:if>
            <label for="email">Correo Electrónico</label><input type="text" name="email"/><br/><br/>
-           <label for="comentario">Comentario</label><input type="text" name="comentario"/><br/><br/>
+           <label for="comentario">Comentario</label><textarea name="comentario"></textarea>    <br/><br/>
            <label for="telefono">Teléfono</label><input type="text" name="telefono"/><br/><br/>
              <br/>
             <input type="submit" value="Enviar"/>

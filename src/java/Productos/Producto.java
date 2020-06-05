@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 /**
  *
- * @author Propietario
+ * @author Manuel
  */
 public class Producto {
     
@@ -18,7 +18,6 @@ public class Producto {
     public double precio;
     public String rutaFotos;
     public int cantidad;
-    public Opinion[] opiniones;
     
     public Producto(int cod,String nombre,double precio,String rutaFotos,int cantidad){        
         this.cod = cod;

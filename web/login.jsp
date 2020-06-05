@@ -1,7 +1,7 @@
 <%-- 
     Document   : login
     Created on : 21-may-2020, 13:03:30
-    Author     : Propietario
+    Author     : Manuel
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -18,7 +18,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 	
 
-	<title> Formulario </title>
+	<title> Login </title>
 
 	<link href="https://fonts.googleapis.com/css?family=Electrolize&display=swap" rel="stylesheet">
 

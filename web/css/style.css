@@ -26,6 +26,7 @@ p {
     display:flex;
     flex-wrap:wrap;
     align-content: space-around;
+    padding-top: 500px;
     
    
 }

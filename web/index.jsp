@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
     Created on : 03-jun-2020, 17:21:13
-    Author     : Propietario
+    Author     : Manuel
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -44,23 +44,7 @@
 
 <body>
 	<main>
-	<div class="mainsinfooter">
-		<header class="headerprincipal">
-			<h1><img src="img/logo.png" alt="logo"> </h1>
-		</header>
-		<nav>
-			<ul id="color2">
-				<li class="activo"><a href="index.jsp">Inicio</a></li>
-				<li><a href="html/multimedia.jsp">Rutinas</a></li>
-				<li><a href="html/servicios.jsp">Servicios</a></li>
-				<li><a href="html/centros.jsp">Centros </a></li>
-				<li><a href="html/productos.jsp">Productos</a></li>
-				<li><a href="html/form.jsp">Contáctanos</a>
-			</ul>
-		</nav>
-		<div class ="maincontent">
-		<section>
-                    <div class ="funcionalidades">
+            <div class ="funcionalidades">
                     <a href="/Proyecto_Final/registro.jsp">Registro</a>
                     <c:if test ="${empty usuarioLogeado}">
                     <a href="/Proyecto_Final/login.jsp">Login</a>
@@ -77,6 +61,24 @@
                         </form>
                     </c:if>
                     </div>
+   
+	<div class="mainsinfooter">
+		<header class="headerprincipal">
+			<h1><img src="img/logo.png" alt="logo"> </h1>
+		</header>
+		<nav>
+			<ul id="color2">
+				<li class="activo"><a href="index.jsp">Inicio</a></li>
+				<li><a href="html/multimedia.jsp">Rutinas</a></li>
+				<li><a href="html/servicios.jsp">Servicios</a></li>
+				<li><a href="html/centros.jsp">Centros </a></li>
+				<li><a href="html/productos.jsp">Productos</a></li>
+				<li><a href="html/form.jsp">Contáctanos</a>
+			</ul>
+		</nav>
+		<div class ="maincontent">
+		<section>
+                    
 			<div class="grid-container">
 		<div class="item1">                   
 			<article>				

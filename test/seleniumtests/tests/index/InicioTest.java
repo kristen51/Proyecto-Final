@@ -5,17 +5,17 @@
  */
 package seleniumtests.tests.index;
 
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import seleniumtests.SeleniumTest;
 
 /**
- * Test selenium para las funcionalidades de la página "index.html"
- * @author Rober
+ *
+ * @author Propietario
  */
-public class IndexTest extends SeleniumTest {
+public class InicioTest extends SeleniumTest {
     
     @Test
     public void testBotonInicialLlevaAMenuInicial() {
@@ -24,12 +24,13 @@ public class IndexTest extends SeleniumTest {
         botonInicio.click();
         String titulo = driver.getTitle();
        
-        assertEquals("Menú inicial", titulo);
+        assertEquals("DriveFit", titulo);
     }
     
     @Test
     public void testComprobarTituloPáginaInicial() {
         
-        assertEquals("ITV DAW", driver.getTitle());
+        assertEquals("Inicio", driver.getTitle());
     }
+    
 }

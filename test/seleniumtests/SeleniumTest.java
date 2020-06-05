@@ -18,7 +18,7 @@ import util.RunOracleScript;
  */
 public abstract class SeleniumTest {
     
-    private static final String URL_WEB = "http://localhost:8080/UT10_BBDD/";
+    private static final String URL_WEB = "http://localhost:8080/Proyecto_Final/";
     
     protected WebDriver driver;
     
@@ -32,11 +32,8 @@ public abstract class SeleniumTest {
     }
     
     private void resetBD() {
-        new RunOracleScript("db.properties", "itv_oracle_pruebas.sql").run();
+        new RunOracleScript("db.properties", "driveFit_oracle_pruebas.sql").run();
     }
     
-    @After
-    public void tearDown() {
-        driver.quit();
-    }
+    
 }

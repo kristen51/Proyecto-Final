@@ -13,7 +13,6 @@ import Usuarios.Usuario;
  */
 public class Formulario {
     
-    int cod;
     String nombreReal;
     String apellidos;
     String email;
@@ -21,7 +20,6 @@ public class Formulario {
     String comentario;
     int usuario;
     
-    private static int codigoNuevoFormulario= 0;
     
     public static final String PATRON_TELEFONO = "\\d{9}";
     public static final String PATRON_EMAIL= "\\w{2,}.@\\w{2,}.\\w{2,}";
@@ -29,8 +27,6 @@ public class Formulario {
     public Formulario(String nombreReal,String apellidos,String email,
             String telefono,String comentario,int usuario){
         
-        this.cod = codigoNuevoFormulario;
-        codigoNuevoFormulario++;
         this.nombreReal = nombreReal;
         this.apellidos = apellidos;
         this.email = email;
@@ -39,9 +35,6 @@ public class Formulario {
         this.usuario = usuario;
     }
 
-    public int getCodigo() {
-        return cod;
-    }
 
     public String getEmail() {
         return email;

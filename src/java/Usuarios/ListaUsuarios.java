@@ -1,6 +1,7 @@
 package Usuarios;
 
 import Excepciones.IniciarSesionException;
+import Excepciones.NoExisteException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -63,7 +64,7 @@ public class ListaUsuarios {
                         String email = resultSet.getString("email");
                         String nombreReal = resultSet.getString("nombreReal");
                         String apellidos = resultSet.getString("apellidos");
-                        String contraseña = resultSet.getString("contraseña");
+                        String contraseña = resultSet.getString("contrasenya");
                         
                         usuarios.add(new Usuario(cod,nombreUsuario,email,nombreReal,apellidos,contraseña));
                     }
@@ -76,20 +77,21 @@ public class ListaUsuarios {
     public Usuario getUsuario(int cod) throws SQLException{
     
         String sentenciaSQL = "select * from " + NOMBRE_TABLA + " where cod=" + cod;
-        
+        String nombreUsuario = null;
         try (Connection connection = this.dataSource.getConnection()) {
             try (Statement statement = connection.createStatement()) {
                 try (ResultSet resultSet = statement.executeQuery(sentenciaSQL)) {
 
                     while (resultSet.next()) {    
                        
-                        String nombreUsuario = resultSet.getString("nombreUsuario");
+                        nombreUsuario = resultSet.getString("nombreUsuario");
                         String email = resultSet.getString("email");
                         String nombreReal = resultSet.getString("nombreReal");
                         String apellidos = resultSet.getString("apellidos");
-                        String contraseña = resultSet.getString("contraseña");                        
+                        String contraseña = resultSet.getString("contrasenya");                        
                         return new Usuario(cod,nombreUsuario,email,nombreReal,apellidos,contraseña);
                     }
+                    
                 }
             }
         }
@@ -99,7 +101,7 @@ public class ListaUsuarios {
     public String buscarUsuario(String identificador) throws SQLException{
     
         
-        String sentenciaSQL ="select nombreUsuario, email, contraseña from " + NOMBRE_TABLA +
+        String sentenciaSQL ="select nombreUsuario, email, contrasenya from " + NOMBRE_TABLA +
                 " where nombreUsuario='"+identificador+"' OR email='"+identificador+"'";
         
         String nombreUsuarioEncontrado = null;
@@ -114,7 +116,7 @@ public class ListaUsuarios {
                     
                     nombreUsuarioEncontrado = resultSet.getString("nombreUsuario");
                     emailEncontrado = resultSet.getString("email");
-                    passwordEncontrado = resultSet.getString("contraseña");
+                    passwordEncontrado = resultSet.getString("contrasenya");
                     }
                     
                     if(nombreUsuarioEncontrado == null){
@@ -130,7 +132,7 @@ public class ListaUsuarios {
     
     public String getNombreUsuarioSegunIdentificador(String identificador) throws SQLException{
     
-        String sentenciaSQL ="select nombreUsuario, email, contraseña from " + NOMBRE_TABLA +
+        String sentenciaSQL ="select nombreUsuario, email, contrasenya from " + NOMBRE_TABLA +
                 " where nombreUsuario='"+identificador+"' OR email='"+identificador+"'";
         String nombreUsuarioEncontrado = null;
         
@@ -149,7 +151,7 @@ public class ListaUsuarios {
     
     public int getCodSegunIdentificador(String identificador) throws SQLException{
     
-        String sentenciaSQL ="select nombreUsuario, email, contraseña from " + NOMBRE_TABLA +
+        String sentenciaSQL ="select cod, nombreUsuario, email, contrasenya from " + NOMBRE_TABLA +
                 " where nombreUsuario='"+identificador+"' OR email='"+identificador+"'";
         int cod= 0;
         
@@ -157,7 +159,7 @@ public class ListaUsuarios {
             try(Statement statement = connection.createStatement()){
                 try(ResultSet resultSet = statement.executeQuery(sentenciaSQL)){
                     while(resultSet.next()){                   
-                    cod =Integer.parseInt(resultSet.getString("cod"));   
+                    cod = resultSet.getInt("cod");   
                     }
                     return cod;                    
                 }            
@@ -185,12 +187,12 @@ public class ListaUsuarios {
         }
     }
         
-    public void mete(Usuario usuario,int numUsuarios) throws SQLException {
+    public void mete(Usuario usuario) throws SQLException {
 
         String sentenciaSQL = "INSERT INTO " + NOMBRE_TABLA + " VALUES("
-                + numUsuarios + ", '"
+                + this.getNumUsuarios()+ ", '"
                 + usuario.getNombreUsuario()+ "', '"
-                + usuario.getEmail()+ "', "
+                + usuario.getEmail()+ "',"
                 + usuario.getContraseña()+ ",'"
                 + usuario.getNombreReal()+ "', '"
                 + usuario.getApellidos()+ 
@@ -208,7 +210,7 @@ public class ListaUsuarios {
         String sentenciaSQL ="UPDATE "+ NOMBRE_TABLA +
                 " SET nombreUsuario ='"+ usuario.getNombreUsuario()
                 +"', email ='"+ usuario.getEmail()
-                +"', contraseña ='"+ usuario.getContraseña()
+                +"', contrasenya ='"+ usuario.getContraseña()
                 +"', nombreReal ='"+ usuario.getNombreReal()
                 +"', apellidos ='"+ usuario.getApellidos()
                 +"' WHERE cod ="+usuario.getCodigo();

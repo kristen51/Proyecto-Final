@@ -64,16 +64,13 @@ public class ModificarUsuarios extends HttpServlet {
         
         String nombreUsuario = getNombreUsuario(request);       
         String email = getEmail(request);
-              
-        if(!(lista.buscarUsuario(email) == null) || !(lista.buscarUsuario(nombreUsuario) == null)){
-            throw new AltaUsuarioException("Ya existe un usuario con ese nombre o email");
-        }
-        else{       
+     
+               
         String[] nombreCompleto = getNombreReal(request);
         String contraseña = getContraseña(request);  
         int numUsuarios = lista.getNumUsuarios()-1;
         return new Usuario(numUsuarios,nombreUsuario, email,  nombreCompleto[0], nombreCompleto[1], contraseña);   
-    }
+    
 }
     
     public String getNombreUsuario(HttpServletRequest request) throws AltaUsuarioException{

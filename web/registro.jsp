@@ -1,7 +1,7 @@
 <%-- 
     Document   : registro
     Created on : 21-may-2020, 13:03:49
-    Author     : Propietario
+    Author     : Manuel
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="css/style.css"/>
 	<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 	
-	<title> DriveFit </title>
+	<title> Registro </title>
 
 	<link href="https://fonts.googleapis.com/css?family=Electrolize&display=swap" rel="stylesheet">
 	

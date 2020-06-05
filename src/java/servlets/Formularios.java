@@ -26,7 +26,7 @@ import javax.sql.DataSource;
 
 /**
  *
- * @author Propietario
+ * @author Manuel
  */
 public class Formularios extends HttpServlet {
     
@@ -59,8 +59,7 @@ public class Formularios extends HttpServlet {
             
             if(!usuarioLogeado.isEmpty()){    
                 String[] nombreReal = listaUsuarios.getNombreCompletoSegunIdentificador(usuarioLogeado);         
-                /*throw new NullPointerException();*/
-                listaFormularios.mete(new Formulario(nombreReal[0], nombreReal[1], email, telefono, comentario,00));
+                listaFormularios.mete(new Formulario(nombreReal[0], nombreReal[1], email, telefono, comentario,listaUsuarios.getCodSegunIdentificador((String) application.getAttribute("usuarioLogeado"))));
                 request.setAttribute("mensajeOK", "Formulario enviado correctamente");
                 application.getRequestDispatcher("/html/form.jsp").forward(request, response);
             }

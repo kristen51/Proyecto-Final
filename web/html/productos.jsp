@@ -1,7 +1,7 @@
 <%-- 
     Document   : productos
     Created on : 04-jun-2020, 14:12:49
-    Author     : Propietario
+    Author     : Manuel
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Productos</title>
     </head>
 <body>
         <!DOCTYPE html>
@@ -75,11 +75,18 @@
                 <div class="producto">
                     <p>${producto.getNombre()}</p>
                     
-                    <p>${producto.getPrecio()}</p>
+                    <p>Precio: ${producto.getPrecio()}€</p>
        
-                    <p>${producto.getCantidad()}</p>
+                    <p>Stock: ${producto.getCantidad()}</p>
                  
                 <img src="${producto.getRutaFotos()}" alt="foto"></a>
+                
+                <c:if test="${not empty usuarioLogeado}">
+                <form method="post" action="IrAOpiniones">
+                    <input type="hidden" name="producto" value="${producto.getCod()}">
+                    <input type="submit" value="Opinar">
+                </form>
+                </c:if>
                 </div>
                 <br>
             </c:forEach>    

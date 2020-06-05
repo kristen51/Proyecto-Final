@@ -1,7 +1,7 @@
 <%-- 
     Document   : inicio
     Created on : 19-may-2020, 15:35:41
-    Author     : Propietario
+    Author     : Manuel
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -9,14 +9,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Inicio</title>
     </head>
     <body>
               
-        <form method="post" action="ServletInicio">
-                <input type="submit" value="Accede al menu de pruebas" /> 
-        </form>
-        
+        <img src="img/logo.png">
         
         <form method="post" action="ServletInicioWeb">
                 <input type="submit" value="Accede a la web" /> 

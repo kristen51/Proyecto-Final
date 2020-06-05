@@ -2,7 +2,7 @@ CREATE TABLE USUARIO(
 cod integer PRIMARY KEY,
 nombreUsuario varchar2(8) UNIQUE NOT NULL,
 email varchar2(50) UNIQUE NOT NULL,
-contraseña varchar2(4)not null,
+contrasenya varchar2(4)not null,
 nombreReal varchar2(50),
 apellidos varchar2(50),
 tipo varchar2(50) DEFAULT 'normal'
@@ -37,14 +37,10 @@ usuario integer NOT NULL,
 CONSTRAINT FK_FORMULARIO_USUARIO FOREIGN KEY(usuario) REFERENCES USUARIO
 );
 
-ALTER TABLE OPINION ADD CONSTRAINT RANGO_PUNTUACION CHECK(puntuacion<=10 and puntuacion>=0);
+ALTER TABLE OPINION ADD CONSTRAINT RANGO_PUNTUACION CHECK(puntuacion<=5 and puntuacion>=1);
 ALTER TABLE USUARIO ADD CONSTRAINT TIPO_USUARIO CHECK(tipo ='normal' or tipo='admin' or tipo=null);
 ALTER TABLE PRODUCTO ADD CONSTRAINT NADA_ES_GRATIS_EN_LA_VIDA CHECK(precio>0);
 
 ALTER TABLE PRODUCTO
 ADD (cantidad integer not null);
 
-/*
-DROP TABLE USUARIO;
-DROP TABLE PRODUCTO;
-DROP TABLE OPINION;*/

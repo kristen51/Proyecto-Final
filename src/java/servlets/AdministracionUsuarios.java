@@ -5,6 +5,7 @@
  */
 package servlets;
 
+import Excepciones.NoExisteException;
 import Usuarios.ListaUsuarios;
 import Usuarios.Usuario;
 import java.io.IOException;
@@ -40,7 +41,6 @@ public class AdministracionUsuarios extends HttpServlet {
         
         ListaUsuarios listaUsuarios = (ListaUsuarios) application.getAttribute("usuariosRegistrados");
         int codUsuario = Integer.parseInt(request.getParameter("usuario"));
-        
         
         Usuario usuario = listaUsuarios.getUsuario(codUsuario);
         application.setAttribute("UsuarioAModificar", usuario);

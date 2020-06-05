@@ -1,7 +1,7 @@
 <%-- 
     Document   : modificarUsuario
     Created on : 02-jun-2020, 17:03:48
-    Author     : Propietario
+    Author     : Manuel
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -17,7 +17,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 	
 
-	<title> Formulario </title>
+	<title> Modificar Usuario </title>
 
 	<link href="https://fonts.googleapis.com/css?family=Electrolize&display=swap" rel="stylesheet">
 
@@ -64,9 +64,7 @@
 
         <div id="form">
 	
-
-	<p>${cod}</p>
-        <p>${UsuarioAModificar.getNombreUsuario()}</p>
+        <p>Usuario a modificar:${UsuarioAModificar.getNombreUsuario()}</p>
         
         <form method="post" action="ModificarUsuarios">
             <label for="nombreUsuario">Nombre de Usuario</label><input type="text" name="nombreUsuario" value="${UsuarioAModificar.getNombreUsuario()}"/><br/>

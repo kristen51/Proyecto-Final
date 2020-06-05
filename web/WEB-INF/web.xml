@@ -28,6 +28,14 @@
         <servlet-name>ServletInicioWeb</servlet-name>
         <servlet-class>servlets.ServletInicioWeb</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>IrAOpiniones</servlet-name>
+        <servlet-class>servlets.IrAOpiniones</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Opiniones</servlet-name>
+        <servlet-class>servlets.Opiniones</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Registros</servlet-name>
         <url-pattern>/Registros</url-pattern>
@@ -67,6 +75,14 @@
     <servlet-mapping>
         <servlet-name>ServletInicioWeb</servlet-name>
         <url-pattern>/ServletInicioWeb</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IrAOpiniones</servlet-name>
+        <url-pattern>/html/IrAOpiniones</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Opiniones</servlet-name>
+        <url-pattern>/html/Opiniones</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
